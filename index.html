@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title>Wetherspoon Treasure Hunt</title>
+
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!--
+      * To allow injecting of HTML subpages
+      * Example: <div w3-include-html="content.html"></div>
+     -->
+    <script src="http://www.w3schools.com/lib/w3data.js"></script>
+
+  </head>
+  <body>
+    <!-- Page One -->
+    <div data-role="page" id="home">
+      <div w3-include-html="./pages/home.html"></div>
+    </div>
+
+    <!-- Page two -->
+    <div data-role="page" id="second_page">
+      <div w3-include-html="./pages/second_page.html"></div>
+    </div>
+
+    <script>
+      w3IncludeHTML();
+    </script>
+  </body>
+</html>
