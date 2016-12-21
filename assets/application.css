@@ -1,3 +1,7 @@
+a {
+  text-decoration: none; /* no underline */
+}
+
 .header {
   background-color: #000000 !important;
   box-shadow: 1px black !important;
@@ -78,4 +82,46 @@
   font-family: 'Nunito', sans-serif;
   font-weight: 200;
   font-shadow: none;
+}
+
+.pubs-list {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 400 !important;
+  width: 100%;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #979797;
+}
+
+.pubs-list a{
+  color: #000000;
+}
+
+.pubs-list-item {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  height: 50px;
+  border-top: 1px solid #979797;
+}
+
+.pubs-list-name {
+  font-size: 18px;
+  margin-left: 3%;
+}
+
+.pubs-list-distance {
+  float: right;
+  margin-right: 2%;
+}
+
+.pubs-list-arrow {
+  font-size: 18px;
+  float: right;
+  margin-right: 1%;
+  margin-top: 20px;
+}
+
+.pubs-list-description {
+  margin-left: 3%;
+  margin-top: 5px;
+  width: 90%;
 }
