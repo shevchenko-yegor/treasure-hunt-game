@@ -125,3 +125,16 @@ a {
   margin-top: 5px;
   width: 90%;
 }
+
+.pub-info-icons {
+  color: #bbb;
+}
+
+.pub-fav-icon {
+  left: 90%;
+  top: 5%;
+}
+
+.inline {
+  display: inline;
+}
