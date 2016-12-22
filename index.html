@@ -14,8 +14,9 @@
   	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="./assets/application.css">
 
-  	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
 
     <!--
       * To allow injecting of HTML subpages
@@ -108,9 +109,70 @@
     </script>
 
     <script>
-    function searchPub() {
-      $('.pubs-list').show();
-    }
+      // Global store for everything
+      var store = {
+        pubs: {
+          0: {
+            id: 0,
+            name: 'Friend at Hand',
+            description: 'a cosy little pub just tucked around the corner from Russel Squre tube station',
+            pubGameDescription: 'asdasdas',
+            address: '255–256 Upper Street Islington, London, N1 5AQ',
+            telephone: '+44 7477 777 777',
+            workingHours: 'Mon - Sun 08:00 - 00:00'
+          },
+          1: {
+            id: 1,
+            name: 'Lamb',
+            description: 'another pub very good on',
+            pubGameDescription: 'lorem sero ldwqq lowerw',
+            address: '255–256 Upper Street Islington, London, N1 5AQ',
+            telephone: '+44 7477 777 777',
+            workingHours: 'Mon - Sun 08:00 - 00:00'
+          },
+          2: {
+            id: 2,
+            name: 'Museum Tavern',
+            description: 'another pub very good on',
+            pubGameDescription: 'lorem sero ldwqq lowerw',
+            address: '255–256 Upper Street Islington, London, N1 5AQ',
+            telephone: '+44 7477 777 777',
+            workingHours: 'Mon - Sun 08:00 - 00:00'
+          }
+        }
+      };
+
+      function loadPubData(id) {
+        var pub = store.pubs[id] || store.pubs[0];
+
+        $('#pub-name').text(pub.name);
+        $('#pub-game-description').text(pub.pubGameDescription);
+        $('#pub-address').text(pub.address);
+        $('#pub-telephone').text(pub.telephone);
+        $('#pub-working-hours').text(pub.workingHours);
+      }
+
+      function searchPub() {
+        $('.pubs-result-div').show();
+        var pubsList = $('#pubs-list');
+        // Remove all childs to refresh the list
+        pubsList.empty();
+
+        _.each(store.pubs, function (pub) {
+          var html = ''
+            + '<div class="pubs-list-item">'
+              + '<a href="#poi_page" onclick="loadPubData(' + pub.id + ');">'
+              + '<span class="pubs-list-name"><b>' + pub.name+ '</b></span>'
+              + '<span class="pubs-list-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>'
+              + '<span class="pubs-list-distance">0.2 miles</span>'
+              + '<p class="pubs-list-description">' + pub.description + '</p>'
+              + '</a>'
+            + '</div>';
+          pubsList.append(html);
+        });
+
+        pubsList.show();
+      }
     </script>
 
     <!-- <script>

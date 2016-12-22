@@ -6,15 +6,12 @@
   <div class="ui-grid-a" style="position: relative;">
     <img class="heading-image" src="./assets/images/background.jpg" alt="pub-inside-image">
     <div class="image-centered-text pub-fav-icon"><a><i class="fa fa-star-o" aria-hidden="true"></i></a></div>
-    <div class="image-centered-text">Friend at hand</div>
+    <div class="image-centered-text" id="pub-name"></div>
   </div><!-- /grid-a -->
 
   <div class="ui-grid-b">
     <h1 align="center">Game description</h1>
-    <p class="main-text-block" align="center">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-    </p>
+    <p class="main-text-block" align="center" id="pub-game-description"></p>
   </div><!-- /grid-b -->
 
   <div style="height: 35%; margin-bottom: 20px;" class="ui-grid-c" align="center">
@@ -32,9 +29,9 @@
   </div><!-- /grid-d -->
 
   <div class="ui-grid-e dark-background" align="center">
-    <p><i class="fa fa-map-marker pub-info-icons" aria-hidden="true" ></i> 255–256 Upper Street Islington, London, N1 5AQ</p>
-    <p><i class="fa fa-phone-square pub-info-icons" aria-hidden="true" ></i> +44 7477 777 777</p>
-    <p><i class="fa fa-clock-o pub-info-icons" aria-hidden="true" ></i> Mon - Sun 08:00 - 00:00</p>
+    <p><i class="fa fa-map-marker pub-info-icons" aria-hidden="true" ></i> <span id="pub-address"></span></p>
+    <p><i class="fa fa-phone-square pub-info-icons" aria-hidden="true" ></i> <span id="pub-telephone"></span></p>
+    <p><i class="fa fa-clock-o pub-info-icons" aria-hidden="true" ></i> <span id="pub-working-hours"></span></p>
     <button class="ui-btn ui-corner-all ui-shadow primary-button inline" style="width: 20%;">Book a table</button>
   </div><!-- /grid-e -->
 
