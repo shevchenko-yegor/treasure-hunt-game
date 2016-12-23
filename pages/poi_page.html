@@ -5,7 +5,7 @@
 <div role="main" class="ui-content" style="padding:0;">
   <div class="ui-grid-a" style="position: relative;">
     <img class="heading-image" src="./assets/images/background.jpg" alt="pub-inside-image">
-    <div class="image-centered-text pub-fav-icon"><a><i class="fa fa-star-o" aria-hidden="true"></i></a></div>
+    <div class="image-centered-text pub-fav-icon"><span id="pub-favourite-icon"></span></div>
     <div class="image-centered-text" id="pub-name"></div>
   </div><!-- /grid-a -->
 
@@ -15,8 +15,8 @@
   </div><!-- /grid-b -->
 
   <div style="height: 35%; margin-bottom: 20px;" class="ui-grid-c" align="center">
-    <button class="ui-btn ui-corner-all ui-shadow primary-button inline" style="width: 20%;">Play</button>
-    <button class="ui-btn ui-corner-all ui-shadow primary-button inline" style="width: 20%;">Book</button>
+    <a class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Play</a>
+    <a class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Book</a>
   </div><!-- /grid-c -->
 
   <div style="height: 30%; margin-bottom: 20px;" class="ui-grid-d" align="center">
@@ -34,6 +34,9 @@
     <p><i class="fa fa-clock-o pub-info-icons" aria-hidden="true" ></i> <span id="pub-working-hours"></span></p>
     <button class="ui-btn ui-corner-all ui-shadow primary-button inline" style="width: 20%;">Book a table</button>
   </div><!-- /grid-e -->
+
+  <!-- TODO: remove once we have meny -->
+  <a href="#favourites" onclick="loadFavPubs()">Favs</a>
 
 <div data-role="footer" class="footer">
   <h1>

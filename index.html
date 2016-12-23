@@ -102,6 +102,11 @@
       <div w3-include-html="./pages/poi_page.html"></div>
     </div>
 
+    <!-- Page four -->
+    <div data-role="page" id="favourites">
+      <div w3-include-html="./pages/favourites.html"></div>
+    </div>
+
     <script>
       (function () {
         w3IncludeHTML();
@@ -111,6 +116,7 @@
     <script>
       // Global store for everything
       var store = {
+        favouritePubs: [],
         pubs: {
           0: {
             id: 0,
@@ -150,6 +156,9 @@
         $('#pub-address').text(pub.address);
         $('#pub-telephone').text(pub.telephone);
         $('#pub-working-hours').text(pub.workingHours);
+        $('#pub-favourite-icon').html(
+          '<i onclick="togglePubFavourite(this, ' + pub.id +')" class="fa fa-star'
+          + (_.includes(store.favouritePubs, id) ? '' : '-o') + ' aria-hidden="true"></i>')
       }
 
       function searchPub() {
@@ -173,6 +182,51 @@
 
         pubsList.show();
       }
+
+      function togglePubFavourite(e, id) {
+        var parent = $(e).parent();
+        parent.empty();
+
+        if (_.includes(store.favouritePubs, id)) {
+          // Remove from favs
+          _.pull(store.favouritePubs, id);
+          parent.html('<i onclick="togglePubFavourite(this, ' + id +')" class="fa fa-star-o" aria-hidden="true"></i>');
+        } else {
+          // Add to favs
+          store.favouritePubs.push(id);
+          parent.html('<i onclick="togglePubFavourite(this, ' + id +')" class="fa fa-star" aria-hidden="true"></i>');
+        }
+      }
+
+      function loadFavPubs() {
+        var favPubsList = $('#fav-pubs-list');
+        // Remove all childs to refresh the list
+        favPubsList.empty();
+
+        if (store.favouritePubs.length === 0) {
+          var h = '<div align="center"> No favourite pubs yet, <a href="#find_pub">find a pub.</a></div>';
+          favPubsList.append(h);
+          $('#fav-buttons').hide();
+          return;
+        }
+
+        $('#fav-buttons').show();
+
+        _.each(store.favouritePubs, function (i) {
+          var pub = store.pubs[i];
+          var html = ''
+            + '<a href="#poi_page" onclick="loadPubData(' + pub.id + ');">'
+              + '<div class="pubs-list-item">'
+              + '<span class="pubs-list-name"><b>' + pub.name+ '</b></span>'
+              + '<span class="pubs-list-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>'
+              + '<p class="pubs-list-description">' + pub.description + '</p>'
+              + '</div>';
+            + '</a>'
+          favPubsList.append(html);
+        });
+
+      }
+
     </script>
 
     <!-- <script>
