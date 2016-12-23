@@ -12,7 +12,7 @@
 
   <div id="fav-buttons" style="height: 35%; margin-bottom: 20px; display:none;" class="ui-grid-c" align="center">
 
-  <a href="#favouritesDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all secondary-button ui-btn-inline" style="width: 40%">Share</a>
+  <a href="#favoritesDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all secondary-button ui-btn-inline" style="width: 40%">Share</a>
   <a href="#" class="ui-btn ui-corner-all primary-button ui-btn-inline" style="width: 40%">Find more</a>
   </div><!-- /grid-c -->
 
@@ -25,14 +25,14 @@
   </h1>
 </div>
 
-<div data-role="popup" id="favouritesDialog" data-overlay-theme="b" data-dismissible="false" style="max-width:400px;">
+<div data-role="popup" id="favoritesDialog" data-overlay-theme="b" data-dismissible="false" style="max-width:400px;">
     <div data-role="header" >
-    <h1>Share favourites list</h1>
+    <h1>Share favorites list</h1>
     </div>
     <div role="main" class="ui-content" align="center">
       <form onsubmit="return false" method="post">
         <h3 class="ui-title">Enter email</h3>
-        <input type="email" name="favouritesEmail" placeholder="Enter email" required="">
+        <input type="email" name="favoritesEmail" placeholder="Enter email" required="">
         <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline secondary-button-button" data-rel="back">Cancel</a>
         <button type="submit" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline primary-button" data-rel="back" data-transition="flow">Send</button>
     </form>
