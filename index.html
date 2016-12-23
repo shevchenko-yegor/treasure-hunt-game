@@ -181,6 +181,9 @@
         });
 
         pubsList.show();
+        $('html, body').animate({
+          scrollTop: $("#pubs-list").offset().top
+        }, 500);
       }
 
       function togglePubFavourite(e, id) {
@@ -229,24 +232,24 @@
 
     </script>
 
-    <!-- <script>
+    <script>
       function initMap() {
-        setTimeout(renderMap, 5000);
+        setTimeout(renderMap, 500);
       }
       function renderMap() {
-        console.log('calling');
-        var uluru = {lat: -25.363, lng: 131.044};
+        var uluru = { lat: 51.5228932, lng: -0.1268167 }; // Friend at Hand location
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
-          zoom: 4,
+          zoom: 13,
           center: uluru
         });
+
         var marker = new google.maps.Marker({
           position: uluru,
-          map: map
+          map: map,
         });
       }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS2IIQTdjabc_ZJygCIKXg-0nSE_4CkNw&callback=initMap"></script> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS2IIQTdjabc_ZJygCIKXg-0nSE_4CkNw&callback=initMap"></script>
 
   </body>
 </html>
