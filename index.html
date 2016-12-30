@@ -130,7 +130,14 @@
             pubGameDescription: 'asdasdas',
             address: '255–256 Upper Street Islington, London, N1 5AQ',
             telephone: '+44 7477 777 777',
-            workingHours: 'Mon - Sun 08:00 - 00:00'
+            workingHours: 'Mon - Sun 08:00 - 00:00',
+            game: {
+              type: 'multipleChoice',
+              description: 'What is displayed on the front door?',
+              clues: [ 'Door 0', 'Beer0', 'Car 0' ],
+              answers: [ 'hero One', 'Two heroes', 'Three' ],
+              correctAnswer: 'Two',
+            }
           },
           1: {
             id: 1,
@@ -139,7 +146,14 @@
             pubGameDescription: 'lorem sero ldwqq lowerw',
             address: '255–256 Upper Street Islington, London, N1 5AQ',
             telephone: '+44 7477 777 777',
-            workingHours: 'Mon - Sun 08:00 - 00:00'
+            workingHours: 'Mon - Sun 08:00 - 00:00',
+            game: {
+              type: 'multipleChoicePhoto',
+              description: 'Photo',
+              clues: [ 'Door 1', 'Beer1 ', 'Car 1' ],
+              answers: [ 'One', 'Two', 'Three' ],
+              correctAnswer: 'Two',
+            }
           },
           2: {
             id: 2,
@@ -148,7 +162,14 @@
             pubGameDescription: 'lorem sero ldwqq lowerw',
             address: '255–256 Upper Street Islington, London, N1 5AQ',
             telephone: '+44 7477 777 777',
-            workingHours: 'Mon - Sun 08:00 - 00:00'
+            workingHours: 'Mon - Sun 08:00 - 00:00',
+            game: {
+              type: 'multipleChoice',
+              description: 'Input What is displayed on the front door? Question 3',
+              clues: [ 'Door', 'Beer', 'Car' ],
+              answers: [ 'One', 'Two', 'Three' ],
+              correctAnswer: 'Two',
+            }
           }
         }
       };
@@ -163,7 +184,57 @@
         $('#pub-working-hours').text(pub.workingHours);
         $('#pub-favourite-icon').html(
           '<i onclick="togglePubFavourite(this, ' + pub.id +')" class="fa fa-star'
-          + (_.includes(store.favouritePubs, id) ? '' : '-o') + ' aria-hidden="true"></i>')
+          + (_.includes(store.favouritePubs, id) ? '' : '-o') + ' aria-hidden="true"></i>');
+
+        $('#pub-action-buttons').html(
+          '<a href="#game" onclick="loadPubGamePage(' + id + ')" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Play</a>'
+          + '<a class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Book</a>'
+        );
+      }
+
+      function loadPubGamePage(id) {
+        var pub = store.pubs[id] || store.pubs[0];
+        var answers = '';
+
+        // multipleChoice game type
+        if (pub.game.type === 'multipleChoice') {
+          $('#task-icon').html('<i style="color: #5b7814;" class="fa fa-check-square-o fa-2" aria-hidden="true"></i>');
+
+          // Answers HTML
+          answers = '<fieldset data-role="controlgroup"><legend><b>Choose one:</b></legend>';
+          _.each(pub.game.answers, function (answer, i) {
+            answers += '<input name="radio-choice-v-2" id="radio-choice-v-2-'+ i + '" value="off" type="radio" required>'
+              + '<label for="radio-choice-v-2-'+ i + '">' + answer + '</label>';
+          });
+          answers += '</fieldset>'
+
+        // multipleChoicePhoto game type
+        } else if (pub.game.type === 'multipleChoicePhoto') {
+          $('#task-icon').html('<i style="color: #447884;" class="fa fa-binoculars fa-2" aria-hidden="true"></i>');
+
+          // Answers HTML
+          answers = '<fieldset data-role="controlgroup"><legend><b>Choose one:</b></legend>';
+          _.each(pub.game.answers, function (answer, i) {
+            answers += '<input name="radio-choice-v-2" id="radio-choice-v-2-'+ i + '" value="' + answer + '" type="radio" required>'
+              + '<label for="radio-choice-v-2-'+ i + '">' + answer + '</label>';
+          });
+          answers += '</fieldset>'
+
+        } else if (pub.game.type === 'input') {
+          // TODO: Add input game type
+        }
+
+        answers += '<input type="hidden" name="pubId" value="' + pub.id + '">';
+        $('#game-answers').html(answers);
+
+        // General HTML or text for all game types
+        $('#game-description').text(pub.game.description);
+
+        var clues = '';
+        _.each(pub.game.clues, function (clue) {
+          clues += '<li>' + clue + '</li>';
+        });
+        $('#game-clues').html(clues);
       }
 
       function searchPub() {

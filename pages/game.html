@@ -4,31 +4,19 @@
 </div>
 <div role="main" class="ui-content" style="padding:0;">
   <div class="ui-grid-a">
-    <h1 align="center">TASK <span id="task-icon"><i style="color: #5b7814;" class="fa fa-check-square-o fa-2" aria-hidden="true"></i></span></h1>
-    <p class="main-text-block" align="center">What is displayed on the front door?</p>
+    <h1 align="center">TASK <span id="task-icon"></span></h1>
+    <p id="game-description" class="main-text-block" align="center"></p>
   </div><!-- /grid-a -->
 
   <div class="ui-grid-b">
     <div data-role="collapsible" data-content-theme="false">
         <h4>Clues</h4>
-        <ul>
-          <li>Door</li>
-          <li>Beer</li>
-          <li>Car</li>
+        <ul id="game-clues">
         </ul>
     </div>
   </div><!-- /grid-b -->
   <form>
-    <div class="ui-grid-c" style="margin-top: 20px;" align="center">
-        <fieldset data-role="controlgroup">
-          <legend><b>Choose one:</b></legend>
-          <input name="radio-choice-v-2" id="radio-choice-v-2a" value="off" type="radio" required>
-          <label for="radio-choice-v-2a">One</label>
-          <input name="radio-choice-v-2" id="radio-choice-v-2b" value="off" type="radio">
-          <label for="radio-choice-v-2b">Two</label>
-          <input name="radio-choice-v-2" id="radio-choice-v-2c" value="other" type="radio">
-          <label for="radio-choice-v-2c">Three</label>
-        </fieldset>
+    <div id="game-answers" class="ui-grid-c" style="margin-top: 20px;" align="center">
     </div><!-- /grid-c -->
 
     <div style="height: 35%; margin-bottom: 20px;" class="ui-grid-c" align="center">
