@@ -136,7 +136,7 @@
               description: 'What is displayed on the front door?',
               clues: [ 'Door 0', 'Beer0', 'Car 0' ],
               answers: [ 'hero One', 'Two heroes', 'Three' ],
-              correctAnswer: 'Two',
+              correctAnswer: 'Two heroes',
             }
           },
           1: {
@@ -203,7 +203,7 @@
           // Answers HTML
           answers = '<fieldset data-role="controlgroup"><legend><b>Choose one:</b></legend>';
           _.each(pub.game.answers, function (answer, i) {
-            answers += '<input name="radio-choice-v-2" id="radio-choice-v-2-'+ i + '" value="off" type="radio" required>'
+            answers += '<input name="radio-choice-v-2" id="radio-choice-v-2-'+ i + '" value="' + answer + '" type="radio" required>'
               + '<label for="radio-choice-v-2-'+ i + '">' + answer + '</label>';
           });
           answers += '</fieldset>'
@@ -235,6 +235,27 @@
           clues += '<li>' + clue + '</li>';
         });
         $('#game-clues').html(clues);
+      }
+
+      function checkGame(e) {
+        var id = $("input[type=hidden]").val();
+        var pub = store.pubs[id] || store.pubs[0];
+        var answer = '';
+
+        if (pub.game.type === 'multipleChoice') {
+          answer = $("input[name=radio-choice-v-2]:checked").val();
+        } else if (pub.game.type === 'multipleChoicePhoto') {
+          answer = $("input[name=radio-choice-v-2]:checked").val();
+        }
+
+        if (answer === pub.game.correctAnswer) {
+          // TODO: Add points
+          // Show Congratulations screen
+          // Do not allow to play this game again
+          alert('Correct answer!');
+        } else {
+          alert('wrong');
+        }
       }
 
       function searchPub() {
