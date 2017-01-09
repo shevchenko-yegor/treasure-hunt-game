@@ -14,9 +14,15 @@
   	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
     <link rel="stylesheet" href="./assets/application.css">
 
+    <link type="text/css" rel="stylesheet" href="assets/demo.css" />
+    <link type="text/css" rel="stylesheet" href="assets/jquery.mmenu.all.css" />
+
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.mmenu.all.min.js"></script>
 
     <!--
       * To allow injecting of HTML subpages
@@ -31,7 +37,18 @@
       <!-- Home Page -->
       <div data-role="header" data-position="fixed" class="header">
         <h1 class="logo"><b>wetherspoon</b> / GAME</h1>
+        <a href="#myPanel" class="ui-btn ui-btn-left ui-corner-all ui-icon-bars ui-btn-icon-notext" style="padding:2px; background:#000000" ></a>
       </div>
+
+      <div data-role="panel" id="myPanel" data-position="left" data-theme="b" >
+        <ul data-role="listview">
+          <li data-icon="false"><a href="#">Your Score: <p id="score">0</p></a></li>
+          <li><a href="#favorites" onclick="loadFavPubs()">Favs</a></li>
+          <li><a href="#rewards" onclick="buildRewards()">Rewards</a></li>
+          <li><a href="#find_pub">Find a Pub</a></li>
+        </ul>
+      </div>
+
       <div role="main" class="ui-content" style="padding:0;">
         <div class="ui-grid-a" style="position: relative;">
           <img class="heading-image" src="./assets/images/background.jpg" alt="pub-inside-image">
@@ -127,12 +144,14 @@
       // Global store for everything
       var store = {
         favouritePubs: [],
+        score: 0,
+        playedGames: [],
         pubs: {
           0: {
             id: 0,
             name: 'Friend at Hand',
             description: 'a cosy little pub just tucked around the corner from Russel Squre tube station',
-            pubGameDescription: 'asdasdas',
+            pubGameDescription: 'In this game you will have to find out the answer what is displayed on the front door?',
             address: '255–256 Upper Street Islington, London, N1 5AQ',
             telephone: '+44 7477 777 777',
             workingHours: 'Mon - Sun 08:00 - 00:00',
@@ -142,6 +161,7 @@
               clues: [ 'Door 0', 'Beer0', 'Car 0' ],
               answers: [ 'hero One', 'Two heroes', 'Three' ],
               correctAnswer: 'Two heroes',
+              reward: 200
             }
           },
           1: {
@@ -158,6 +178,7 @@
               clues: [ 'Door 1', 'Beer1 ', 'Car 1' ],
               answers: [ 'One', 'Two', 'Three' ],
               correctAnswer: 'Two',
+              reward: 300
             }
           },
           2: {
@@ -174,6 +195,7 @@
               clues: [ 'Door', 'Beer', 'Car' ],
               answers: [ 'One', 'Two', 'Three' ],
               correctAnswer: 'Two',
+              reward: 400
             }
           }
         }
@@ -309,6 +331,7 @@
         favPubsList.empty();
 
         if (store.favouritePubs.length === 0) {
+          console.log('true');
           var h = '<div align="center"> No favourite pubs yet, <a href="#find_pub">find a pub.</a></div>';
           favPubsList.append(h);
           $('#fav-buttons').hide();
@@ -336,7 +359,7 @@
 
     <script>
       function initMap() {
-        setTimeout(renderMap, 500);
+        setTimeout(renderMap, 700);
       }
       function renderMap() {
         var uluru = { lat: 51.5228932, lng: -0.1268167 }; // Friend at Hand location
