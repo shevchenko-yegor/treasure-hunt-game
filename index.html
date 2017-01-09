@@ -112,6 +112,11 @@
       <div w3-include-html="./pages/game.html"></div>
     </div>
 
+    <!-- Page six -->
+    <div data-role="page" id="booking">
+      <div w3-include-html="./pages/booking.html"></div>
+    </div>
+
     <script>
       (function () {
         w3IncludeHTML();
@@ -188,7 +193,7 @@
 
         $('#pub-action-buttons').html(
           '<a href="#game" onclick="loadPubGamePage(' + id + ')" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Play</a>'
-          + '<a class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Book</a>'
+          + '<a href="#booking" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Book</a>'
         );
       }
 
