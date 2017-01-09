@@ -353,5 +353,64 @@
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS2IIQTdjabc_ZJygCIKXg-0nSE_4CkNw&callback=initMap"></script>
 
+
+    <script type="application/javascript">
+    			function ShowCustomDialog()
+    			{
+            console.log('called');
+      			ShowDialogBox('Successful Booking !','Your reservation was successfully received. Proceed to payment screen for the security deposit.','To payment','', 'GoToAssetList',null);
+    			}
+
+          function ShowDialogBox(title, content, btn1text, btn2text, functionText, parameterList) {
+              var btn1css;
+              var btn2css;
+
+              if (btn1text == '') {
+                  btn1css = "hidecss";
+              } else {
+                  btn1css = "showcss";
+              }
+
+              if (btn2text == '') {
+                  btn2css = "hidecss";
+              } else {
+                  btn2css = "showcss";
+              }
+              $("#lblMessage").html(content);
+
+              $("#dialog").dialog({
+                  resizable: false,
+                  title: title,
+                  modal: true,
+                  width: '400px',
+                  height: 'auto',
+                  bgiframe: false,
+                  hide: { effect: 'scale', duration: 400 },
+
+
+                  buttons: [
+                                  {
+                                      text: btn1text,
+                                      "class": btn1css,
+                                      click: function () {
+
+                                          $("#dialog").dialog('close');
+
+                                      }
+                                  },
+                                  {
+                                      text: btn2text,
+                                      "class": btn2css,
+                                      click: function () {
+//										 "https://www.paypal.com/login";
+
+										$("#dialog").dialog(window.location="http://www.google.com");
+
+                                      }
+                                  }
+                              ]
+              });
+          }
+    </script>
   </body>
 </html>

@@ -151,3 +151,6 @@ a {
 #pub-favourite-icon {
   cursor: pointer;
 }
+
+.showcss{ display:block;}
+.hidecss{ display:none;}
