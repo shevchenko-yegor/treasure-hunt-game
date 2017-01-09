@@ -1,0 +1,40 @@
+<!-- Favourite Pubs Page -->
+<div data-role="header" data-position="fixed" class="header">
+  <h1 class="logo"><b>wetherspoon</b> / GAME</h1>
+</div>
+<div role="main" class="ui-content" style="padding:0;">
+
+  <div class="ui-grid-c pubs-result-div" style="display: none; margin-bottom: 20px;">
+    <h1 align="center">Favourite Pubs</h1>
+    <div id="fav-pubs-list" style="border-bottom: 1px solid #979797;">
+    </div>
+  </div><!-- /grid-a -->
+
+  <div id="fav-buttons" style="height: 35%; margin-bottom: 20px; display:none;" class="ui-grid-c" align="center">
+
+  <a href="#favoritesDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all secondary-button ui-btn-inline" style="width: 40%">Share</a>
+  <a href="#" class="ui-btn ui-corner-all primary-button ui-btn-inline" style="width: 40%">Find more</a>
+  </div><!-- /grid-c -->
+
+
+<div data-role="footer" data-position="fixed" class="footer">
+  <h1>
+    <i class="fa fa-facebook fa-2" aria-hidden="true"></i>&nbsp;&nbsp;
+    <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;&nbsp;
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </h1>
+</div>
+
+<div data-role="popup" id="favoritesDialog" data-overlay-theme="b" data-dismissible="false" style="max-width:400px;">
+    <div data-role="header" >
+    <h1>Share favorites list</h1>
+    </div>
+    <div role="main" class="ui-content" align="center">
+      <form onsubmit="return false" method="post">
+        <h3 class="ui-title">Enter email</h3>
+        <input type="email" name="favoritesEmail" placeholder="Enter email" required="">
+        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline secondary-button-button" data-rel="back">Cancel</a>
+        <button type="submit" href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline primary-button" data-rel="back" data-transition="flow">Send</button>
+    </form>
+    </div>
+</div>

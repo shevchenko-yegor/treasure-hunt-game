@@ -1,0 +1,444 @@
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title>Wetherspoon Treasure Hunt</title>
+
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Fonts -->
+    <!--  Nunito font is instead of Avenir, as avenir is very expensive -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Nunito:200,300,400" rel="stylesheet">
+    <!-- Font Awesome  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="./assets/application.css">
+
+    <link type="text/css" rel="stylesheet" href="assets/demo.css" />
+    <link type="text/css" rel="stylesheet" href="assets/jquery.mmenu.all.css" />
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.17.2/lodash.min.js"></script>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.mmenu.all.min.js"></script>
+    <script type="text/javascript">
+      // jQuery(document).ready(function( $ ){
+      //   $("nav#menu").mmenu();
+      // });
+    </script>
+    
+    <!--
+      * To allow injecting of HTML subpages
+      * Example: <div w3-include-html="content.html"></div>
+     -->
+    <script src="./assets/js/w3data.js"></script>
+
+  </head>
+  <body>
+    <!-- Page One -->
+    <div data-role="page" id="home">
+      <!-- Home Page -->
+      <div data-role="header" data-position="fixed" class="header">
+
+      <!-- <a href="#menu"><span></span></a>  --><!-- CHANGES ! -->
+      
+        <h1 class="logo"><b>wetherspoon</b> / GAME</h1>
+        <a href="#myPanel" onclick="updateScore()" class="ui-btn ui-btn-left ui-corner-all ui-icon-bars ui-btn-icon-notext" style="padding:2px; background:#000000" ></a>
+      </div>
+      <!-- CHANGES -->
+    <div data-role="panel" id="myPanel" data-position="left" data-theme="b" > 
+      <ul data-role="listview">
+        <li data-icon="false"><a href="#">Your Score: <p id="score"></p></a></li>
+        <li><a href="#favourites">Favourites</a></li>
+        <li><a href="#rewards" onclick="buildRewards()">Rewards</a></li>
+        <li><a href="#find_pub">Find a Pub</a></li>
+      </ul>
+    </div>
+
+      <div role="main" class="ui-content" style="padding:0;">
+        <div class="ui-grid-a" style="position: relative;">
+          <img class="heading-image" src="./assets/images/background.jpg" alt="pub-inside-image">
+          <div class="image-centered-text">Pubs Treasure Hunt</div>
+        </div><!-- /grid-a -->
+        <div style="height: 35%;" class="ui-grid-b dark-background" align="center">
+          <p class="main-text-block">
+            Welcome to Weatherspoon's Treasure Hunt Game, discover our pubs and answer various questions and riddles to win rewards. We hope you will love our game. Find a place of you interest, feel free to come by and give us a visit as questions you will answer will relate to place you're visiting.
+          </p>
+          <a href="#find_pub" class="ui-btn ui-corner-all ui-shadow primary-button"  style="width: 60%;">Find a Pub</a>
+        </div><!-- /grid-b -->
+
+        <div style="height: 30%; margin-bottom: 20px;" class="ui-grid-c" align="center">
+          <p class="main-text-block">
+            <a href="#home_more" style="text-decoration: none;">
+              FIND OUT MORE<br>
+              <i class="fa fa-chevron-down" aria-hidden="true" style="font-size: 25px; color: black !important;"></i>
+            </a>
+          </p>
+        </div><!-- /grid-c -->
+
+        <div id="home_more" style="height: 30%; margin-bottom: 20px;" class="ui-grid-d" align="center">
+          <p class="main-text-block">
+            <i class="fa fa-book" aria-hidden="true" style="font-size: 60px; color: b3865c !important;"></i><br><br>
+            Rules:<br>
+            Answer our questions relating to place you would like to visit to win rewards. But bare in mind that if you use any clues, you will score less points.
+          </p>
+        </div><!-- /grid-d -->
+
+        <div style="height: 30%;" class="ui-grid-e dark-background" align="center">
+          <p class="main-text-block">
+            <i class="fa fa-trophy" aria-hidden="true" style="font-size: 60px; color: b3865c !important;"></i><br><br>
+            Trophies:<br>
+            Win a trophy by collecting points for correct answers. Trophies can be exchanged for free stuff - yes free !
+          </p>
+        </div><!-- /grid-e -->
+      </div>
+        <!-- New subscription input -->
+        <div style="height: 35%; margin-bottom: 20px;" class="ui-grid-b" align="center">
+        <form id="mc-embedded-subscribe-form2" action="//paul-georgescu.us13.list-manage.com/subscribe/post?u=c58bc78ab693c9166ceeb4ada&amp;id=4dd9493dc5" method="post" name="mc-embedded-subscribe-form" target="_blank" novalidate="" class="small-form subscribe-form">
+          <div class="input-group input-group-lg" style="width: 80%;">
+            <input id="mce-EMAIL2" type="email" name="EMAIL" placeholder="Enter email ..." class="form-control" ><span class="input-group-btn">
+              <button id="mc-embedded-subscribe2" type="submit" name="subscribe" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 60%;">SUBSCRIBE</button></span>
+          </div>
+          <div id="mce-responses2">
+            <div id="mce-error-response2" style="display:none" class="response"></div>
+            <div id="mce-success-response2" style="display:none" class="response"></div>
+          </div>
+        </form>
+        </div>
+
+      <div data-role="footer" data-position="fixed" class="footer" >
+        <h1>
+          <i class="fa fa-facebook fa-2" aria-hidden="true"></i>&nbsp;&nbsp;
+          <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;&nbsp;
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </h1>
+      </div>
+
+    </div>
+
+    <!-- Page two -->
+    <div data-role="page" id="find_pub">
+      <div w3-include-html="./pages/find_pub.html"></div>
+    </div>
+
+    <!-- Page three -->
+    <div data-role="page" id="poi_page">
+      <div w3-include-html="./pages/poi_page.html"></div>
+    </div>
+
+    <!-- Page four -->
+    <div data-role="page" id="favorites">
+      <div w3-include-html="./pages/favorites.html"></div>
+    </div>
+
+    <!-- Page five -->
+    <div data-role="page" id="game">
+      <div w3-include-html="./pages/game.html"></div>
+    </div>
+
+    <!-- Page six -->
+     <div data-role="page" id="booking">
+       <div w3-include-html="./pages/booking.html"></div>
+    </div>
+
+    <script>
+      (function () {
+        w3IncludeHTML();
+      })();
+    </script>
+
+    <script>
+      // Global store for everything
+      var store = {
+        favouritePubs: [],
+        pubs: {
+          0: {
+            id: 0,
+            name: 'Friend at Hand',
+            description: 'a cosy little pub just tucked around the corner from Russel Squre tube station',
+            pubGameDescription: 'Play series of quizes and questions and earn rewards for correct answers',
+            address: '255–256 Upper Street Islington, London, N1 5AQ',
+            telephone: '+44 7477 777 777',
+            workingHours: 'Mon - Sun 08:00 - 00:00',
+            
+            game: {
+              type: 'multipleChoice',
+              description: 'What is displayed on the front door?',
+              clues: [ 'The pub sign is found outside', 'It is an animal', 'A Friend to Man' ],
+              answers: [ 'Dog', 'Beer', 'Horse' ],
+              correctAnswer: 'Dog',
+            }
+          },
+
+          1: {
+            id: 1,
+            name: 'Lamb',
+            description: 'another pub very good on',
+            pubGameDescription: 'Play series of quizes and questions and earn rewards for correct answers',
+            address: '255–256 Upper Street Islington, London, N1 5AQ',
+            telephone: '+44 7477 777 777',
+            workingHours: 'Mon - Sun 08:00 - 00:00',
+            
+            game: {
+              type: 'multipleChoicePhoto',
+              description: 'Photo',
+              clues: [ 'Door 1', 'Beer1 ', 'Car 1' ],
+              answers: [ 'One', 'Two', 'Three' ],
+              correctAnswer: 'Two',
+            }
+          },
+          2: {
+            id: 2,
+            name: 'Museum Tavern',
+            description: 'another pub very good on',
+            pubGameDescription: 'Play series of quizes and questions and earn rewards for correct answers',
+            address: '255–256 Upper Street Islington, London, N1 5AQ',
+            telephone: '+44 7477 777 777',
+            workingHours: 'Mon - Sun 08:00 - 00:00',
+            
+            game: {
+              type: 'multipleChoice',
+              description: 'Input What is displayed on the front door? Question 3',
+              clues: [ 'Door', 'Beer', 'Car' ],
+              answers: [ 'One', 'Two', 'Three' ],
+              correctAnswer: 'Two',
+            }
+          }
+        }
+      };
+
+      function loadPubData(id) {
+        var pub = store.pubs[id] || store.pubs[0];
+
+        $('#pub-name').text(pub.name);
+        $('#pub-game-description').text(pub.pubGameDescription);
+        $('#pub-address').text(pub.address);
+        $('#pub-telephone').text(pub.telephone);
+        $('#pub-working-hours').text(pub.workingHours);
+        $('#pub-favourite-icon').html(
+          '<i onclick="togglePubFavourite(this, ' + pub.id +')" class="fa fa-star'
+          + (_.includes(store.favouritePubs, id) ? '' : '-o') + ' aria-hidden="true"></i>');
+
+        $('#pub-action-buttons').html(
+          '<a href="#game" onclick="loadPubGamePage(' + id + ')" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Play</a>'
+          + '<a href="#booking" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Book</a>'
+        );
+      }
+
+      function loadPubGamePage(id) {
+        var pub = store.pubs[id] || store.pubs[0];
+        var answers = '';
+
+        // multipleChoice game type
+        if (pub.game.type === 'multipleChoice') {
+          $('#task-icon').html('<i style="color: #5b7814;" class="fa fa-check-square-o fa-2" aria-hidden="true"></i>');
+
+          // Answers HTML
+          answers = '<fieldset data-role="controlgroup"><legend><b>Choose one:</b></legend>';
+          _.each(pub.game.answers, function (answer, i) {
+            answers += '<input name="radio-choice-v-2" id="radio-choice-v-2-'+ i + '" value="' + answer + '" type="radio" required>'
+              + '<label for="radio-choice-v-2-'+ i + '">' + answer + '</label>';
+          });
+          answers += '</fieldset>'
+
+        // multipleChoicePhoto game type
+        } else if (pub.game.type === 'multipleChoicePhoto') {
+          $('#task-icon').html('<i style="color: #447884;" class="fa fa-binoculars fa-2" aria-hidden="true"></i>');
+
+          // Answers HTML
+          answers = '<fieldset data-role="controlgroup"><legend><b>Choose one:</b></legend>';
+          _.each(pub.game.answers, function (answer, i) {
+            answers += '<input name="radio-choice-v-2" id="radio-choice-v-2-'+ i + '" value="' + answer + '" type="radio" required>'
+              + '<label for="radio-choice-v-2-'+ i + '">' + answer + '</label>';
+          });
+          answers += '</fieldset>'
+
+        } else if (pub.game.type === 'input') {
+          // TODO: Add input game type
+        }
+
+        answers += '<input type="hidden" name="pubId" value="' + pub.id + '">';
+        $('#game-answers').html(answers);
+
+        // General HTML or text for all game types
+        $('#game-description').text(pub.game.description);
+
+        var clues = '';
+        _.each(pub.game.clues, function (clue) {
+          clues += '<li>' + clue + '</li>';
+        });
+        $('#game-clues').html(clues);
+      }
+
+      function checkGame(e) {
+        var id = $("input[type=hidden]").val();
+        var pub = store.pubs[id] || store.pubs[0];
+        var answer = '';
+
+        if (pub.game.type === 'multipleChoice') {
+          answer = $("input[name=radio-choice-v-2]:checked").val();
+        } else if (pub.game.type === 'multipleChoicePhoto') {
+          answer = $("input[name=radio-choice-v-2]:checked").val();
+        }
+
+        if (answer === pub.game.correctAnswer) {
+          // TODO: Add points
+          // Show Congratulations screen
+          // Do not allow to play this game again
+          alert('Correct answer!');
+        } else {
+          alert('wrong');
+        }
+      }
+
+      function searchPub() {
+        $('.pubs-result-div').show();
+        var pubsList = $('#pubs-list');
+        // Remove all childs to refresh the list
+        pubsList.empty();
+
+        _.each(store.pubs, function (pub) {
+          var html = ''
+            + '<div class="pubs-list-item">'
+              + '<a href="#poi_page" onclick="loadPubData(' + pub.id + ');">'
+              + '<span class="pubs-list-name"><b>' + pub.name+ '</b></span>'
+              + '<span class="pubs-list-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>'
+              + '<span class="pubs-list-distance">0.2 miles</span>'
+              + '<p class="pubs-list-description">' + pub.description + '</p>'
+              + '</a>'
+            + '</div>';
+          pubsList.append(html);
+        });
+
+        pubsList.show();
+        $('html, body').animate({
+          scrollTop: $("#pubs-list").offset().top
+        }, 500);
+      }
+
+      function togglePubFavourite(e, id) {
+        var parent = $(e).parent();
+        parent.empty();
+
+        if (_.includes(store.favouritePubs, id)) {
+          // Remove from favs
+          _.pull(store.favouritePubs, id);
+          parent.html('<i onclick="togglePubFavourite(this, ' + id +')" class="fa fa-star-o" aria-hidden="true"></i>');
+        } else {
+          // Add to favs
+          store.favouritePubs.push(id);
+          parent.html('<i onclick="togglePubFavourite(this, ' + id +')" class="fa fa-star" aria-hidden="true"></i>');
+        }
+      }
+
+      function loadFavPubs() {
+        var favPubsList = $('#fav-pubs-list');
+        // Remove all childs to refresh the list
+        favPubsList.empty();
+
+        if (store.favouritePubs.length === 0) {
+          var h = '<div align="center"> No favourite pubs yet, <a href="#find_pub">find a pub.</a></div>';
+          favPubsList.append(h);
+          $('#fav-buttons').hide();
+          return;
+        }
+
+        $('#fav-buttons').show();
+
+        _.each(store.favouritePubs, function (i) {
+          var pub = store.pubs[i];
+          var html = ''
+            + '<a href="#poi_page" onclick="loadPubData(' + pub.id + ');">'
+              + '<div class="pubs-list-item">'
+              + '<span class="pubs-list-name"><b>' + pub.name+ '</b></span>'
+              + '<span class="pubs-list-arrow"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>'
+              + '<p class="pubs-list-description">' + pub.description + '</p>'
+              + '</div>';
+            + '</a>'
+          favPubsList.append(html);
+        });
+
+      }
+
+    </script>
+
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+
+function initMAP(){setTimeout(initialize,1500);}
+
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map.setTilt(45);
+        
+    // Multiple Markers
+    var markers = [
+        ['The Friend at Hand, London', 51.522919,-0.124543],
+        ['Lamb Tavern, London', 51.5128363,-0.0833488],
+        ['Museum Tavern, London',51.5182035,-0.1259933]
+    ];
+                        
+    // Info Window Content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>Friend at Hand</h3>' +
+        '<p>Traditional pub with stripped floors and multi-screen live sports.</p>' + '</div>'],
+        ['<div class="info_content">' +
+        '<h3>The Lamb Tavern</h3>' +
+        '<p>Pub and dining room on 3 floors where drinkers can spill outside into covered Leadenhall Market.</p>' +
+        '</div>'],
+        ['<div class="info_content">' +
+        '<h3>Museum Tavern</h3>' +
+        '<p>Cask ale, global wines and pub grub in a Victorian interior with carved wood and etched glass.</p>' +
+        '</div>']
+
+    ];
+        
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0]
+        });
+        
+        // Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(13);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
+}</script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK_b2Cgbv1O7gvxalyKYP6BjGDwL_pZiQ&callback=initMAP"></script>
+
+
+
+  </body>
+</html>

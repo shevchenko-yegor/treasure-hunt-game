@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css">
+<script type="application/javascript">
+$(document).ready(function(){
+                  $('#book-alert').click(function(){
+ShowCustomDialog();
+});
+                  });
+
+
+			function ShowCustomDialog()
+			{
+                
+			ShowDialogBox('Successful Booking !','Your reservation was successfully received. Proceed to payment screen for the security deposit.','To payment','', 'GoToAssetList',null);
+			}
+
+            function ShowDialogBox(title, content, btn1text, btn2text, functionText, parameterList) {
+                var btn1css;
+                var btn2css;
+
+                if (btn1text == '') {
+                    btn1css = "hidecss";
+                } else {
+                    btn1css = "showcss";
+                }
+
+                if (btn2text == '') {
+                    btn2css = "hidecss";
+                } else {
+                    btn2css = "showcss";
+                }
+                $("#lblMessage").html(content);
+
+                $("#dialog").dialog({
+                    resizable: false,
+                    title: title,
+                    modal: true,
+                    width: '400px',
+                    height: 'auto',
+                    bgiframe: false,
+                    hide: { effect: 'scale', duration: 400 },
+				
+
+                    buttons: [
+                                    {
+                                        text: btn1text,
+                                        "class": btn1css,
+                                        click: function () {
+                                                                                   
+                                            $("#dialog").dialog('close');
+
+                                        }
+                                    },
+                                    {
+                                        text: btn2text,
+                                        "class": btn2css,
+                                        click: function () { 
+//										 "https://www.paypal.com/login";
+											
+											$("#dialog").dialog(window.location="http://www.google.com");
+                                             
+                                        }
+                                    }
+                                ]
+                });
+            }	
+</script>
+<style>
+  .showcss{ display:block;}
+  .hidecss{ display:none;}	
+</style>
+</head>
+<body>
+
+<div data-role="page">
+
+
+  <div data-role="main" class="ui-content">
+    <form method="post" action="../demoform.asp">
+      <div class="ui-field-contain">
+        <label for="fullname">Name:</label>
+        <input type="text" name="fullname" id="fullname" placeholder="Full Name">       
+        <label for="reservation_date">Date:</label>
+        <input type="date" name="reservation_date" id="reservation_date">
+        <label for="email">E-mail:</label>
+        <input type="email" name="email" id="email" placeholder="Your email..">
+        
+
+        <label for="number_of_people">Nr. of people</label>
+		<input type="number">
+		
+
+      </div>
+
+      <input type="button" id="book-alert" value="Submit">
+      <div id="dialog" title="Alert message" style="display: none">
+            <div class="ui-dialog-content ui-widget-content">
+                <p>
+                    <span style="float: left; margin: 0 20px 20px 0"></span>
+                    <label id="lblMessage">
+                    </label>
+                </p>
+            </div>
+      </div>
+
+   
+    </form>
+  </div>
+</div>
+
+
+
+
+
+
+</body>
+</html>

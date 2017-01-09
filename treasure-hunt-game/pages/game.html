@@ -1,0 +1,45 @@
+<!-- POI Page -->
+<div data-role="header" data-position="fixed" class="header">
+  <h1 class="logo"><b>wetherspoon</b> / GAME</h1>
+  <a href="#myPanel" onclick="updateScore()" class="ui-btn ui-btn-left ui-corner-all ui-icon-bars ui-btn-icon-notext" style="padding:2px; background:#000000" ></a>
+</div>
+    <div data-role="panel" id="myPanel" data-position="left" data-theme="b" > 
+      <ul data-role="listview">
+        <li data-icon="false"><a href="#">Your Score: <p id="score"></p></a></li>
+        <li><a href="#favourites">Favourites</a></li>
+        <li><a href="#rewards" onclick="buildRewards()">Rewards</a></li>
+        <li><a href="#find_pub">Find a Pub</a></li>
+      </ul>
+    </div>
+<div role="main" class="ui-content" style="padding:0;">
+  <div class="ui-grid-a">
+    <h1 align="center">TASK <span id="task-icon"></span></h1>
+    <p id="game-description" class="main-text-block" align="center"></p>
+  </div><!-- /grid-a -->
+
+  <div class="ui-grid-b">
+    <div data-role="collapsible" data-content-theme="false">
+        <h4>Clues</h4>
+        <ul id="game-clues">
+        </ul>
+    </div>
+  </div><!-- /grid-b -->
+  <form id="gameForm" onsubmit="checkGame(); return false" method="post">
+    <div id="game-answers" class="ui-grid-c" style="margin-top: 20px;" align="center">
+    </div><!-- /grid-c -->
+
+    <div style="height: 35%; margin-bottom: 20px;" class="ui-grid-c" align="center">
+      <a type="reset" class="ui-btn ui-corner-all ui-shadow secondary-button" data-rel="back" style="width: 40%;">Exit</a>
+      <button type="submit" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Submit</button>
+    </div><!-- /grid-c -->
+  </form>
+
+</div>
+
+<div data-role="footer" data-position="fixed" class="footer">
+  <h1>
+    <i class="fa fa-facebook fa-2" aria-hidden="true"></i>&nbsp;&nbsp;
+    <i class="fa fa-twitter" aria-hidden="true"></i>&nbsp;&nbsp;
+    <i class="fa fa-instagram" aria-hidden="true"></i>
+  </h1>
+</div>
