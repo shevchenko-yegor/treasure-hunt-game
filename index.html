@@ -37,7 +37,7 @@
       <!-- Home Page -->
       <div data-role="header" data-position="fixed" class="header">
         <h1 class="logo"><b>wetherspoon</b> / GAME</h1>
-        <a href="#myPanel" class="ui-btn ui-btn-left ui-corner-all ui-icon-bars ui-btn-icon-notext" style="padding:2px; background:#000000" ></a>
+        <a href="#myPanel" onclick="updateScore()" class="ui-btn ui-btn-left ui-corner-all ui-icon-bars ui-btn-icon-notext" style="padding:2px; background:#000000" ></a>
       </div>
 
       <div data-role="panel" id="myPanel" data-position="left" data-theme="b" >
@@ -213,10 +213,12 @@
           '<i onclick="togglePubFavourite(this, ' + pub.id +')" class="fa fa-star'
           + (_.includes(store.favouritePubs, id) ? '' : '-o') + ' aria-hidden="true"></i>');
 
-        $('#pub-action-buttons').html(
-          '<a href="#game" onclick="loadPubGamePage(' + id + ')" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Play</a>'
-          + '<a href="#booking" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Book</a>'
-        );
+        if (_.includes(store.playedGames, pub.id.toString())) {
+          $('#pub-action-buttons').html('<a href="#find_pub"class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Find pub</a>' + '<a href="#booking" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Book</a>');
+        } else {
+          $('#pub-action-buttons').html('<a href="#game" onclick="loadPubGamePage(' + id + ')" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Play</a>' + '<a href="#booking" class="ui-btn ui-corner-all ui-shadow primary-button" style="width: 40%;">Book</a>');
+        }
+
       }
 
       function loadPubGamePage(id) {
@@ -276,13 +278,17 @@
         }
 
         if (answer === pub.game.correctAnswer) {
-          // TODO: Add points
-          // Show Congratulations screen
-          // Do not allow to play this game again
           alert('Correct answer!');
+          store.score += pub.game.reward;
+          store.playedGames.push(id);
+          console.log(store);
         } else {
           alert('wrong');
         }
+      }
+
+      function updateScore() {
+        $('#score').text(store.score);
       }
 
       function searchPub() {
